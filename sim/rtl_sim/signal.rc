@@ -1,0 +1,165 @@
+Magic 271485
+Revision Verdi_O-2018.09-SP2-11
+
+; Window Layout <x> <y> <width> <height> <signalwidth> <valuewidth>
+viewPort 0 27 1536 356 214 164
+
+; File list:
+; openDirFile [-d delimiter] [-s time_offset] [-rf auto_bus_rule_file] path_name file_name
+openDirFile -d / "" "/projects/smu_project/ftdi_ft601/core_ft60x_axi/sim/rtl_sim/test.fsdb"
+
+; file time scale:
+; fileTimeScale ### s|ms|us|ns|ps
+
+; signal spacing:
+signalSpacing 5
+
+; windowTimeUnit is used for zoom, cursor & marker
+; waveform viewport range
+zoom 232161.158277 311684.142768
+cursor 248000.000000
+marker 248000.000000
+
+; user define markers
+; userMarker time_pos marker_name color linestyle
+; visible top row signal index
+top 27
+; marker line index
+markerPos 38
+
+; event list
+; addEvent event_name event_expression
+; curEvent event_name
+
+
+
+COMPLEX_EVENT_BEGIN
+
+
+COMPLEX_EVENT_END
+
+
+
+; toolbar current search type
+; curSTATUS search_type
+curSTATUS ByChange
+
+
+aliasmapname mem_axi.stateR
+nalias STR_IDLE		4'b0000		NULL
+nalias STR_READ0		4'b0001		NULL
+nalias STR_READ21		4'b0100		NULL
+nalias STR_READ22		4'b0101		NULL
+nalias STR_READ34		4'b1010		NULL
+nalias STR_END		4'b1011		NULL
+nalias STR_READ1		4'b0010		NULL
+nalias STR_READ32		4'b1000		NULL
+nalias STR_READ2		4'b0011		NULL
+nalias STR_READ3		4'b0110		NULL
+nalias STR_READ33		4'b1001		NULL
+nalias STR_READ31		4'b0111		NULL
+
+aliasmapname mem_axi.stateW
+nalias STW_IDLE		2'b00		NULL
+nalias STW_WRITE0		2'b01		NULL
+nalias STW_WRITE		2'b10		NULL
+nalias STW_RSP		2'b11		NULL
+
+aliasmapname ft60x_axi.state_q
+nalias STATE_IDLE		4'b0000		NULL
+nalias STATE_STATUS		4'b0100		NULL
+nalias STATE_CMD_REQ		4'b0001		NULL
+nalias STATE_DRAIN		4'b1010		NULL
+nalias STATE_READ_CMD		4'b0101		NULL
+nalias STATE_GPIO_WR		4'b1011		NULL
+nalias STATE_WRITE_DATA		4'b1000		NULL
+nalias STATE_CMD_ADDR		4'b0010		NULL
+nalias STATE_WRITE_RESP		4'b1001		NULL
+nalias STATE_READ_DATA		4'b0110		NULL
+nalias STATE_GPIO_RD		4'b1100		NULL
+nalias STATE_ECHO		4'b0011		NULL
+nalias STATE_WRITE_CMD		4'b0111		NULL
+
+aliasmapname ft60x_fifo.state_q
+nalias STATE_TX		3'b010		NULL
+nalias STATE_TURNAROUND		3'b011		NULL
+nalias STATE_IDLE		3'b000		NULL
+nalias STATE_TX_START		3'b001		NULL
+nalias STATE_RX_START		3'b100		NULL
+nalias STATE_RX		3'b101		NULL
+
+addGroup "G1"
+activeDirFile "" "/projects/smu_project/ftdi_ft601/core_ft60x_axi/sim/rtl_sim/test.fsdb"
+addSignal -h 15 /tb_ft601/ft601_clk
+addSignal -h 15 -holdScope TXE_N
+addSignal -h 15 -holdScope RXF_N
+addSignal -h 15 -holdScope ARESETn
+addSignal -h 15 -holdScope BE[3:0]
+addSignal -h 15 -holdScope DATA[31:0]
+addGroup "G2"
+addSignal -h 15 -UNSIGNED -UDEC /tb_ft601/u_ft601_model/fifo_cnt[11:0]
+addGroup "G3"
+addSignal -h 15 /tb_ft601/u_ft601_model/TXE_N
+addSignal -h 15 -holdScope reset_n
+addGroup "G4"
+addSignal -h 15 /tb_ft601/u_ft601_model/WR_N
+addGroup "G5"
+addSignal -h 15 /tb_ft601/ft601_clk
+addSignal -h 15 /tb_ft601/u_ft60x_axi/ftdi_data_in_i[31:0]
+addSignal -h 15 -holdScope ftdi_be_in_i[3:0]
+addSignal -h 15 -holdScope ftdi_rxf_i
+addGroup "G6"
+aliasname ft60x_fifo.state_q
+addSignal -h 15 -UNSIGNED -HEX /tb_ft601/u_ft60x_axi/u_ram/state_q[2:0]
+addGroup "G7"
+addSignal -h 15 /tb_ft601/u_ft60x_axi/u_ram/tx_space_w
+addSignal -h 15 -holdScope tx_ready_w
+addSignal -h 15 -holdScope tx_level_w[11:0]
+addSignal -h 15 -holdScope tx_level_q[11:0]
+addGroup "G8"
+addSignal -h 15 /tb_ft601/OE_N
+addSignal -h 15 -holdScope RD_N
+addGroup "G9"
+addSignal -h 15 /tb_ft601/u_ft60x_axi/ftdi_wrn_o
+addGroup "G10"
+addSignal -h 15 /tb_ft601/u_ft60x_axi/ftdi_oen_o
+addSignal -h 15 -holdScope ftdi_rdn_o
+addSignal -h 15 -holdScope ftdi_be_out_o[3:0]
+addSignal -h 15 -holdScope ftdi_data_out_o[31:0]
+addGroup "G11"
+aliasname ft60x_axi.state_q
+addSignal -h 15 -UNSIGNED -HEX /tb_ft601/u_ft60x_axi/next_state_r[3:0]
+addSignal -h 15 /tb_ft601/u_ft60x_axi/u_ram/ftdi_data_in_i[31:0]
+addGroup "G12"
+
+; getSignalForm Scope Hierarchy Status
+; active file of getSignalForm
+activeDirFile "" "/projects/smu_project/ftdi_ft601/core_ft60x_axi/sim/rtl_sim/test.fsdb"
+
+GETSIGNALFORM_SCOPE_HIERARCHY_BEGIN
+getSignalForm close
+
+"/afifo"
+"/tb_ft601"
+"/tb_ft601/u_ft60x_axi"
+"/tb_ft601/u_ft60x_axi/genblk1"
+"/tb_ft601/u_ft60x_axi/genblk1/u_retime"
+"/tb_ft601/u_ft60x_axi/u_ram"
+"/tb_ft601/u_ft601_model"
+"/tb_ft601/u_mem_axi"
+
+SCOPE_LIST_BEGIN
+"/afifo"
+"/tb_ft601"
+"/tb_ft601/u_ft601_model"
+"/tb_ft601/u_mem_axi"
+"/tb_ft601/u_ft60x_axi"
+"/tb_ft601/u_ft60x_axi/u_ram"
+"/tb_ft601/u_ft60x_axi/genblk1"
+"/tb_ft601/u_ft60x_axi/genblk1/u_retime"
+"/tb_ft601/u_mem_axi/Udpram"
+SCOPE_LIST_END
+
+GETSIGNALFORM_SCOPE_HIERARCHY_END
+
+
