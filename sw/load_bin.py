@@ -30,7 +30,7 @@ def main(argv):
     parser.add_argument('-f', dest='filename',required=True,                      help='File to load')
     parser.add_argument('-a', dest='address', default="0",                        help='Address to write to (default to 0x0)')
     parser.add_argument('-s', dest='size',    default=-1,            type=int,    help='Size override')
-    parser.add_argument('-v', dest='verify',  default=False, action='store_true', help='Verify write')
+    parser.add_argument('-v', dest='verify',  default=True, action='store_true', help='Verify write')
     args = parser.parse_args()
 
     bus_if = BusInterface(args.type, args.device)
@@ -46,22 +46,22 @@ def main(argv):
         filesize = args.size
 
     addr   = int(args.address, 0)
-    print "Load: %d bytes to 0x%08x" % (filesize, addr)
+    print("Load: %d bytes to 0x%08x" % (filesize, addr))
 
     # Write to target
     bus_if.write(addr, data, filesize)
 
     # Verification
     if args.verify:
-        print "Verify:"
+        print("Verify:")
         data_rb = bus_if.read(addr, filesize)
 
         for i in range(filesize):
-            if data_rb[i] != ord(data[i]):
-                print "Data mismatches @ %d: %s != %d" % (addr + i,  str(data_rb[i]), ord(data[i]))
+            if data_rb[i] != data[i]:
+                print("Data mismatches @ %d: %s != %d" % (addr + i,  str(data_rb[i]), ord(data[i])))
                 sys.exit(-1)
 
-        print "Verify: Done"
+        print("Verify: Done")
 
 if __name__ == "__main__":
    main(sys.argv[1:])

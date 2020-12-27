@@ -194,5 +194,30 @@ class FtdiSyncInterface:
                         (value >> 16) & 0xFF, 
                         (value >> 24) & 0xFF])
         self.target.write(cmd)
-
   
+    ##################################################################
+    # read_gpio: Read GPIO bus
+    ##################################################################
+    def read_gpio(self):
+        # Connect if required
+        if self.target == None:
+            self.connect()
+
+        # Send read command
+        cmd = bytearray([self.CMD_GP_RD])
+        self.target.write(cmd)
+
+        return ord(self.target.read(1))
+
+    ##################################################################
+    # write_gpio: Write a byte to GPIO
+    ##################################################################
+    def write_gpio(self, value):
+        # Connect if required
+        if self.target == None:
+            self.connect()
+
+        # Send write command
+        cmd = bytearray([self.CMD_GP_WR,
+                         (value >> 0)  & 0xFF])
+        self.target.write(cmd)

@@ -1,0 +1,12 @@
+Test sequence
+
+sudo python3 gpio_rd.py
+
+sudo python3 gpio_wr.py -v 1
+
+sudo python3 peek.py -a 0
+
+sudo python3 poke.py -a 0 -v 12345678
+
+sudo python3 load_bin.py -f ./__pycache__/ftdi_async_interface.cpython-36.pyc
+
